@@ -47,8 +47,8 @@ przypomnisz sobie o nagraniu wtedy, kiedy bêdziesz najdalej od domu...
 %build
 rm -f missing
 aclocal
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 %configure \
 	--enable-avifile-0_6
 %{__make}
