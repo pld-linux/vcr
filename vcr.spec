@@ -6,7 +6,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://www.stack.nl/~brama/vcr/src/%{name}-%{version}.tar.gz
-Patch0:		vcr-printf.patch
+Patch0:		%{name}-printf.patch
 URL:		http://www.stack.nl/~brama/vcr/
 BuildRequires:	avifile-devel
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -42,7 +42,7 @@ przypomnisz sobie o nagraniu wtedy, kiedy bêdziesz najdalej od domu...
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} DESTDIR=$RPM_BUILD_ROOT install 
+%{__make} DESTDIR=$RPM_BUILD_ROOT install
 
 gzip -9fn AUTHORS ChangeLog NEWS README TODO
 
