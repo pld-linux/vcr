@@ -15,8 +15,6 @@ BuildRequires:	avifile-devel
 BuildRequires:	libstdc++-devel
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 
 %description
 VCR is a program which enables you to record a program using a video
