@@ -5,8 +5,6 @@ Version:	1.07
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
-Group(de):	X11/Applikationen/Multimedia
-Group(pl):	X11/Aplikacje/Multimedia
 Source0:	http://www.stack.nl/~brama/vcr/src/%{name}-%{version}.tar.gz
 Patch0:		vcr-printf.patch
 URL:		http://www.stack.nl/~brama/vcr/
