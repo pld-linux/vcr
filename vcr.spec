@@ -6,6 +6,7 @@ Release:	3
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://www.stack.nl/~brama/vcr/src/%{name}-%{version}.tar.gz
+# Source0-md5:	18a41f998647b8e32f07de3c9f899009
 Patch0:		%{name}-DEBIAN.patch
 Patch1:		%{name}-ac_fixes.patch
 URL:		http://www.stack.nl/~brama/vcr/
