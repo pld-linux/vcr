@@ -7,8 +7,10 @@ License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://www.stack.nl/~brama/vcr/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DEBIAN.patch
+Patch1:		%{name}-ac_fixes.patch
 URL:		http://www.stack.nl/~brama/vcr/
 BuildRequires:	avifile-devel
+BuildRequires:	libstdc++-devel
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -40,6 +42,7 @@ przypomnisz sobie o nagraniu wtedy, kiedy bêdziesz najdalej od domu...
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
