@@ -9,6 +9,8 @@ Source0:	http://www.stack.nl/~brama/vcr/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DEBIAN.patch
 Patch1:		%{name}-ac_fixes.patch
 URL:		http://www.stack.nl/~brama/vcr/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	avifile-devel
 BuildRequires:	libstdc++-devel
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -41,7 +43,7 @@ przypomnisz sobie o nagraniu wtedy, kiedy bêdziesz najdalej od domu...
 
 %build
 rm -f missing
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
