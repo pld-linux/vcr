@@ -1,12 +1,12 @@
 Summary:	VCR is a program which enables you to record a program using a video grabber card
 Summary(pl):	VCR - program pozwalaj±cy nagrywaæ programy przez video grabber
 Name:		vcr
-Version:	1.07
+Version:	1.09
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://www.stack.nl/~brama/vcr/src/%{name}-%{version}.tar.gz
-Patch0:		%{name}-printf.patch
+Patch0:		%{name}-DEBIAN.patch
 URL:		http://www.stack.nl/~brama/vcr/
 BuildRequires:	avifile-devel
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -34,7 +34,7 @@ przypomnisz sobie o nagraniu wtedy, kiedy bêdziesz najdalej od domu...
 
 %prep
 %setup -q
-%patch0 -p0
+%patch0 -p1
 
 %build
 rm -f missing
@@ -42,7 +42,7 @@ aclocal
 autoconf
 automake -a -c -f
 %configure \
-	--enable-avifile-0_6
+	--enable-avifile-0_6 CXX=c++2 CC=gcc2
 %{__make}
 
 %install
