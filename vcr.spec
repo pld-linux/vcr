@@ -37,9 +37,10 @@ przypomnisz sobie o nagraniu wtedy, kiedy bêdziesz najdalej od domu...
 %patch0 -p0
 
 %build
+rm -f missing
 aclocal
-automake -a -c 
 autoconf
+automake -a -c -f
 %configure \
 	--enable-avifile-0_6
 %{__make}
@@ -55,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {AUTHORS,ChangeLog,NEWS,README,TODO}.gz
+%doc *.gz
 %attr(755,root,root) %{_bindir}/vcr
 %{_datadir}/vcr
 %{_mandir}/man1/*
