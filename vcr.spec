@@ -15,10 +15,10 @@ Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
-%define		_gcc_ver	%(%{__cc} -v 2>&1 |grep version |awk '{print $3}' |cut -b 1)
-%if %{_gcc_ver} == 3
-%define		__cc		gcc2
-%define		__cxx		g++2
+
+%define		_gcc_ver	%(%{__cc} -dumpversion | cut -b 1)
+%if %{_gcc_ver} == 2
+%define		__cxx		"%{__cc}"
 %endif
 
 %description
