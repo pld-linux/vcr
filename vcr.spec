@@ -30,7 +30,7 @@ to record it when you're as far away from your home as possible...
 VCR jest programem pozwalaj±cym nagrywaæ programy przy u¿yciu karty
 typu video grabber obs³ugiwanej przez sterowniki video4linux. Nie
 wymaga graficznego ¶rodowiska, mo¿e byæ u¿ywany z popularnymi
-windowsowymi codekami (jak DivX, Indeo Video 5 itp.) poniewa¿ VCR jest
+windowsowymi kodekami (jak DivX, Indeo Video 5 itp.) poniewa¿ VCR jest
 budowany z u¿yciem biblioteki avifile. Teraz mo¿esz wreszcie nagraæ
 swój ulubiony program zdalnie, bo zgodnie z prawami Murphy'ego
 przypomnisz sobie o nagraniu wtedy, kiedy bêdziesz najdalej od domu...
