@@ -1,0 +1,119 @@
+Only in vcr-1.09: debian
+diff -ur vcr-1.09.orig/doc/vcrtimer.pl vcr-1.09/doc/vcrtimer.pl
+--- vcr-1.09.orig/doc/vcrtimer.pl	Wed Jun 13 23:30:53 2001
++++ vcr-1.09/doc/vcrtimer.pl	Thu Apr  4 21:45:51 2002
+@@ -28,7 +28,7 @@
+ 	"sat(urday)?"
+ );
+ # days in month.
+-my @dom	= (31,28,31,30,31,30, 31,30,31,30,31,30);
++my @dom	= (31,28,31,30,31,30, 31,31,30,31,30,31);
+ 
+ my $pidfile	= "/var/run/vcrtimer.pid"; # need root for this :(
+ my $date	= strftime("%Y%m%d", localtime());
+diff -ur vcr-1.09.orig/src/capproc.cc vcr-1.09/src/capproc.cc
+--- vcr-1.09.orig/src/capproc.cc	Sun Nov 11 15:39:22 2001
++++ vcr-1.09/src/capproc.cc	Thu Apr  4 21:45:51 2002
+@@ -265,7 +265,33 @@
+ 	wfm.nAvgBytesPerSec=(int)abps;
+ 	wfm.nBlockAlign=(a.samplesize*a.chan)/8;
+ 	wfm.wBitsPerSample=a.samplesize;
+-	wfm.cbSize=0;
++  wfm.cbSize=0;
++
++  if(audioStream==0 && mp3Stream == 0)
++  {
++     if (a.audiocodec)
++     {
++        debug("Adding mp3 stream...");
++        mp3Stream = file->AddAudioStream(
++        a.audiocodec, //(0x55 = mp3)
++        &wfm,
++        a.audiobitrate); //bitrate, let's hope it's valid.
++        mp3Stream->Start();
++        debug("done");
++     }
++     else
++     {
++        debug("adding audio stream...");
++        audioStream=file->AddStream(AviStream::Audio,
++           (const char*)&wfm, 18,
++           1, //uncompressed PCM data
++           (int)abps, //bytes/sec
++           (a.samplesize*a.chan)/8                 //bytes/sample
++           );
++        debug("done");
++     }
++  }
++        
+ 
+ 		
+ 	//ve.SetQuality(9500);
+@@ -348,24 +374,6 @@
+ 		}
+ 		if(a.m_audq.size())
+ 		{
+-			if(audioStream==0 && mp3Stream == 0)
+-			{
+-				if (a.audiocodec)
+-				{
+-					mp3Stream = file->AddAudioStream(
+-						a.audiocodec, //(0x55 = mp3)
+-						&wfm,
+-						a.audiobitrate); //bitrate, let's hope it's valid.
+-					mp3Stream->Start();
+-				}
+-				else
+-					audioStream=file->AddStream(AviStream::Audio,
+-						(const char*)&wfm, 18,
+-						1, //uncompressed PCM data
+-						(int)abps, //bytes/sec
+-						(a.samplesize*a.chan)/8			//bytes/sample
+-				 );
+-			}	
+ 			ch=a.m_audq.front();
+ 			a.m_audq.pop();
+ 			//std::cerr<<ch.timestamp-snd_time<<" "<<ch.timestamp-(audiodata+audioblock)/44100./2<<std::endl;
+diff -ur vcr-1.09.orig/src/main.cc vcr-1.09/src/main.cc
+--- vcr-1.09.orig/src/main.cc	Sun Nov 11 15:38:36 2001
++++ vcr-1.09/src/main.cc	Thu Apr  4 21:45:51 2002
+@@ -353,11 +353,14 @@
+ 		ready = finished;		
+ 		if (ready)
+ 		{
+-			printf("Captured %d frames.\n", processed);
+-			printf("\tFrames dropped in capture: %d (%.1f%%)\n",
+-				cap_drop,  (double)(100 * cap_drop / processed) );
+-			printf("\tFrames dropped in encoder: %d (%.1f%%)\n",
+-				comp_drop, (double)(100 * comp_drop / processed));
++		    printf("Captured %d frames.\n", processed);
++		    if (processed)
++			{
++			    printf("\tFrames dropped in capture: %d (%.1f%%)\n",
++				    cap_drop,  (double)(100 * cap_drop / processed) );
++			    printf("\tFrames dropped in encoder: %d (%.1f%%)\n",
++				    comp_drop, (double)(100 * comp_drop / processed));
++			}
+ 		}
+ 		else
+ 			sleep(1);
+@@ -943,11 +946,17 @@
+ 		return set_error("Could not find mixer device.");
+ 	}
+ 		
+-	if (!(available_recdevs & (1 << i)))
++	if (!(available_devs & (1 << i)))
+ 	{
+ 		close(mixer);
+ 		return set_error("Selected mixer device is not a valid recording device.");
+-	}
++  }
++  if (!(available_recdevs & (1 << i)))
++  {
++    sprintf(notice_str, "WARNNING: %s:%s is not a recording device",
++       dev, mixdev);
++    vcr_notice(notice_str);
++  }
+ 	
+ 	unsigned int
+ 		recdevs;
