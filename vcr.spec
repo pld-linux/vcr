@@ -37,7 +37,11 @@ przypomnisz sobie o nagraniu wtedy, kiedy bêdziesz najdalej od domu...
 %patch0 -p0
 
 %build
-%configure
+aclocal
+automake -a -c 
+autoconf
+%configure \
+	--enable-avifile-0_6
 %{__make}
 
 %install
