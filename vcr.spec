@@ -13,6 +13,11 @@ Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
+%define		_gcc_ver	%(%{__cc} -v 2>&1 |grep version |awk '{print $3}' |cut -b 1)
+%if %{_gcc_ver} == 3
+%define		__cc		gcc2
+%define		__cxx		g++2
+%endif
 
 %description
 VCR is a program which enables you to record a program using a video
@@ -42,7 +47,7 @@ aclocal
 autoconf
 automake -a -c -f
 %configure \
-	--enable-avifile-0_6 CXX=c++2 CC=gcc2
+	--enable-avifile-0_6
 %{__make}
 
 %install
