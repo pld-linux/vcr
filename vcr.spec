@@ -2,7 +2,7 @@ Summary:	VCR is a program which enables you to record a program using a video gr
 Summary(pl):	VCR - program pozwalaj±cy nagrywaæ programy przez video grabber
 Name:		vcr
 Version:	1.09
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://www.stack.nl/~brama/vcr/src/%{name}-%{version}.tar.gz
@@ -15,11 +15,6 @@ Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
-
-%define		_gcc_ver	%(%{__cc} -dumpversion | cut -b 1)
-%if %{_gcc_ver} == 2
-%define		__cxx		"%{__cc}"
-%endif
 
 %description
 VCR is a program which enables you to record a program using a video
