@@ -16,7 +16,6 @@ BuildRequires:	avifile-devel
 BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-
 %description
 VCR is a program which enables you to record a program using a video
 grabber card that's supported by the video4linux drivers. It doesn't
