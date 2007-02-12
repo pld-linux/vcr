@@ -1,5 +1,5 @@
 Summary:	VCR is a program which enables you to record a program using a video grabber card
-Summary(pl.UTF-8):   VCR - program pozwalający nagrywać programy przez video grabber
+Summary(pl.UTF-8):	VCR - program pozwalający nagrywać programy przez video grabber
 Name:		vcr
 Version:	1.09
 Release:	3
