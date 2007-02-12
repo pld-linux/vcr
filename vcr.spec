@@ -1,5 +1,5 @@
 Summary:	VCR is a program which enables you to record a program using a video grabber card
-Summary(pl):	VCR - program pozwalaj±cy nagrywaæ programy przez video grabber
+Summary(pl.UTF-8):   VCR - program pozwalajÄ…cy nagrywaÄ‡ programy przez video grabber
 Name:		vcr
 Version:	1.09
 Release:	3
@@ -25,14 +25,14 @@ avifile library. Now, you can finally record your favourite program
 from a remote place, because Murphy's law dictates that you remember
 to record it when you're as far away from your home as possible...
 
-%description -l pl
-VCR jest programem pozwalaj±cym nagrywaæ programy przy u¿yciu karty
-typu video grabber obs³ugiwanej przez sterowniki video4linux. Nie
-wymaga graficznego ¶rodowiska, mo¿e byæ u¿ywany z popularnymi
-windowsowymi kodekami (jak DivX, Indeo Video 5 itp.) poniewa¿ VCR jest
-budowany z u¿yciem biblioteki avifile. Teraz mo¿esz wreszcie nagraæ
-swój ulubiony program zdalnie, bo zgodnie z prawami Murphy'ego
-przypomnisz sobie o nagraniu wtedy, kiedy bêdziesz najdalej od domu...
+%description -l pl.UTF-8
+VCR jest programem pozwalajÄ…cym nagrywaÄ‡ programy przy uÅ¼yciu karty
+typu video grabber obsÅ‚ugiwanej przez sterowniki video4linux. Nie
+wymaga graficznego Å›rodowiska, moÅ¼e byÄ‡ uÅ¼ywany z popularnymi
+windowsowymi kodekami (jak DivX, Indeo Video 5 itp.) poniewaÅ¼ VCR jest
+budowany z uÅ¼yciem biblioteki avifile. Teraz moÅ¼esz wreszcie nagraÄ‡
+swÃ³j ulubiony program zdalnie, bo zgodnie z prawami Murphy'ego
+przypomnisz sobie o nagraniu wtedy, kiedy bÄ™dziesz najdalej od domu...
 
 %prep
 %setup -q
